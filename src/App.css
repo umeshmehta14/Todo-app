@@ -18,9 +18,11 @@
 
 body {
   font-size: 14px;
-  background-color: var(--bg);
+  background: linear-gradient(43deg, rgba(119, 141, 169, 1) 0%, rgba(27, 38, 59, 1) 67%);
   color: var(--text-color);
   font-family: var(--primary-font);
+  width: 100vw;
+  height: 100vh;
 }
 
 .App {

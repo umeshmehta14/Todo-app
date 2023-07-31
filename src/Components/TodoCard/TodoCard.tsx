@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./TodoCard.css";
 import { todos } from "../../Model";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
@@ -11,7 +11,12 @@ type Prop = {
 };
 
 const TodoCard: React.FC<Prop> = ({ todo, setTodos, todos }) => {
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
+
   const { id, isCompleted, todo: task } = todo;
+  const [editValue, setEditValue] = useState<string>(task);
 
   const handleDone = (id: number) => {
     const updatedTodo = todos?.map((todo) =>
@@ -25,16 +30,65 @@ const TodoCard: React.FC<Prop> = ({ todo, setTodos, todos }) => {
     setTodos(updatedTodo);
   };
 
+  const handleEdit = (e: React.FormEvent, id: number) => {
+    console.log("object");
+    e.preventDefault();
+    const updatedTodo = todos?.map((todo) =>
+      todo.id === id ? { ...todo, todo: editValue } : todo
+    );
+    setTodos(updatedTodo);
+    setIsEdit(!isEdit);
+  };
+
+  const handleBlur = () => {
+    setIsEdit(false);
+    // Only submit the form if the input value has changed
+    if (editValue !== task) {
+      submitForm();
+    }
+  };
+
+  const submitForm = () => {
+    // Trigger form submission by clicking the hidden submit button
+    submitButtonRef.current?.click();
+  };
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [isEdit]);
+
   return (
-    <div className="card-main">
+    <form className="card-main" onSubmit={(e) => handleEdit(e, id)}>
       <div className="card-background"></div>
-      {isCompleted ? <s>{task}</s> : <p>{task}</p>}
+      {isEdit ? (
+        <>
+          <input
+            ref={inputRef}
+            type="text"
+            value={editValue}
+            onChange={({ target }) => setEditValue(target.value)}
+            onBlur={handleBlur}
+          />
+          <button
+            type="submit"
+            style={{ display: "none" }}
+            ref={submitButtonRef}
+          />
+        </>
+      ) : isCompleted ? (
+        <s>{task}</s>
+      ) : (
+        <p>{task}</p>
+      )}
       <div className="icon-section">
-        <AiFillEdit title="Edit" />
+        <AiFillEdit
+          title="Edit"
+          onClick={() => !isCompleted && !isEdit && setIsEdit(!isEdit)}
+        />
         <AiFillDelete title="Delete" onClick={() => handleDelete(id)} />
         <MdDone title="Done" onClick={() => handleDone(id)} />
       </div>
-    </div>
+    </form>
   );
 };
 
