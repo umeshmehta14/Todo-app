@@ -1,8 +1,33 @@
 import React from "react";
 import "./TodoCard.css";
+import { todos } from "../../Model";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { MdDone } from "react-icons/md";
 
-const TodoCard = () => {
-  return <div></div>;
+type Prop = {
+  todo: todos;
+  todos: todos[];
+  setTodos: React.Dispatch<React.SetStateAction<todos[]>>;
+};
+
+const TodoCard: React.FC<Prop> = ({ todo, setTodos, todos }) => {
+  const { id, isCompleted, todo: task } = todo;
+  const handleDone = (id: number) => {
+    const updatedTodo = todos?.map((todo) =>
+      todo.id === id ? { ...todo, isCompleted: !isCompleted } : todo
+    );
+    setTodos(updatedTodo);
+  };
+  return (
+    <div className="card-main">
+      {isCompleted ? <s>{task}</s> : <p>{task}</p>}
+      <div className="icon-section">
+        <AiFillEdit />
+        <AiFillDelete />
+        <MdDone onClick={() => handleDone(id)} />
+      </div>
+    </div>
+  );
 };
 
 export default TodoCard;

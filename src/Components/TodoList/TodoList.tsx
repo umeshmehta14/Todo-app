@@ -3,11 +3,16 @@ import "./TodoList.css";
 import { todos } from "../../Model";
 import TodoCard from "../TodoCard/TodoCard";
 
-const TodoList: React.FC<{ todos: todos[] }> = ({ todos }) => {
+interface Props {
+  todos: todos[];
+  setTodos: React.Dispatch<React.SetStateAction<todos[]>>;
+}
+
+const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
   return (
     <div>
       {todos?.map((todo) => (
-        <TodoCard />
+        <TodoCard todo={todo} setTodos={setTodos} todos={todos} key={todo.id} />
       ))}
     </div>
   );
