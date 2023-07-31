@@ -42,14 +42,12 @@ const TodoCard: React.FC<Prop> = ({ todo, setTodos, todos }) => {
 
   const handleBlur = () => {
     setIsEdit(false);
-    // Only submit the form if the input value has changed
     if (editValue !== task) {
       submitForm();
     }
   };
 
   const submitForm = () => {
-    // Trigger form submission by clicking the hidden submit button
     submitButtonRef.current?.click();
   };
 
