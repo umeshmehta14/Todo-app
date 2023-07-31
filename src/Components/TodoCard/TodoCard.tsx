@@ -15,7 +15,7 @@ const TodoCard: React.FC<Prop> = ({ todo, setTodos, todos }) => {
 
   const handleDone = (id: number) => {
     const updatedTodo = todos?.map((todo) =>
-      todo.id === id ? { ...todo, isCompleted: !isCompleted } : todo
+      todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
     );
     setTodos(updatedTodo);
   };
