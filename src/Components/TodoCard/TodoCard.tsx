@@ -12,18 +12,25 @@ type Prop = {
 
 const TodoCard: React.FC<Prop> = ({ todo, setTodos, todos }) => {
   const { id, isCompleted, todo: task } = todo;
+
   const handleDone = (id: number) => {
     const updatedTodo = todos?.map((todo) =>
       todo.id === id ? { ...todo, isCompleted: !isCompleted } : todo
     );
     setTodos(updatedTodo);
   };
+
+  const handleDelete = (id: number) => {
+    const updatedTodo = todos?.filter((todo) => todo.id !== id);
+    setTodos(updatedTodo);
+  };
+
   return (
     <div className="card-main">
       {isCompleted ? <s>{task}</s> : <p>{task}</p>}
       <div className="icon-section">
         <AiFillEdit />
-        <AiFillDelete />
+        <AiFillDelete onClick={() => handleDelete(id)} />
         <MdDone onClick={() => handleDone(id)} />
       </div>
     </div>
