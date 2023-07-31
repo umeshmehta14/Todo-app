@@ -15,7 +15,6 @@ const App: React.FC = () => {
     setTodo("");
   };
 
-  // https://img.freepik.com/free-photo/blue-abstract-texture_24972-159.jpg?w=1060&t=st=1690797669~exp=1690798269~hmac=0d5aef5f9e9eb9e94ef076fad025dbcf3c579e37ce120ff71f166a3392fc33c9
   console.log(todos);
 
   return (

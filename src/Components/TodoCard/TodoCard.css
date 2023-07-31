@@ -1,0 +1,62 @@
+/* .card-main {
+    color: whitesmoke;
+    padding: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 50%;
+    background:
+        url("https://img.freepik.com/free-photo/blue-abstract-texture_24972-159.jpg?w=1060&t=st=1690797669~exp=1690798269~hmac=0d5aef5f9e9eb9e94ef076fad025dbcf3c579e37ce120ff71f166a3392fc33c9");
+    border-radius: 12px;
+    backdrop-filter: blur(1rem);
+} */
+
+.card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background:
+    url("https://img.freepik.com/free-photo/blue-abstract-texture_24972-159.jpg?w=1060&t=st=1690797669~exp=1690798269~hmac=0d5aef5f9e9eb9e94ef076fad025dbcf3c579e37ce120ff71f166a3392fc33c9");
+  filter: blur(2px);
+  z-index: -1;
+}
+
+.card-main {
+  color: whitesmoke;
+  padding: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 12px;
+  position: relative;
+  width: 50%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+
+.icon-section {
+  display: flex;
+  font-size: 1.8rem;
+  gap: 0.8rem;
+}
+
+.icon-section svg {
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.icon-section svg:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}

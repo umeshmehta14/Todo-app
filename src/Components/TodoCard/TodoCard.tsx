@@ -27,11 +27,12 @@ const TodoCard: React.FC<Prop> = ({ todo, setTodos, todos }) => {
 
   return (
     <div className="card-main">
+      <div className="card-background"></div>
       {isCompleted ? <s>{task}</s> : <p>{task}</p>}
       <div className="icon-section">
-        <AiFillEdit />
-        <AiFillDelete onClick={() => handleDelete(id)} />
-        <MdDone onClick={() => handleDone(id)} />
+        <AiFillEdit title="Edit" />
+        <AiFillDelete title="Delete" onClick={() => handleDelete(id)} />
+        <MdDone title="Done" onClick={() => handleDone(id)} />
       </div>
     </div>
   );
